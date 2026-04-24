@@ -20,11 +20,10 @@ def get_news(company_name):
     response = requests.get(url, params=params)
     data = response.json()
     
-    return data
+    return data.get("articles", [])
 
 if __name__ == "__main__":
-    import json
     result = get_news("Amazon")
-    for article in result.get("articles", []):
+    for article in result:
         print(article["title"])
         print("---")
